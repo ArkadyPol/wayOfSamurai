@@ -1,9 +1,11 @@
+import s from './Profile.module.scss';
+
 function Profile() {
-  return <div className="content">
+  return <div className={s.content}>
     <div>
       <img
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-fff2lftqIE077pFAKU1Mhbcj8YFvBbMvpA&usqp=CAU"
-          alt="back image"/>
+          alt="background"/>
     </div>
     <div>
       avatar + description
@@ -13,10 +15,10 @@ function Profile() {
       <div>
         New Post
       </div>
-      <div>
-        <div>post 1</div>
-        <div>post 2</div>
-        <div>post 3</div>
+      <div className="posts">
+        <div className={s.item}>post 1</div>
+        <div className={s.item}>post 2</div>
+        <div className={s.item}>post 3</div>
       </div>
     </div>
   </div>;
