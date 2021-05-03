@@ -9,9 +9,9 @@ function MyPosts() {
       <button>Add Post</button>
     </div>
     <div className={s.posts}>
-      <Post/>
-      <Post/>
-      <Post/>
+      <Post message={'It\'s my third post'} likesCount={1}/>
+      <Post message={'It\'s my second post'} likesCount={2}/>
+      <Post message={'It\'s my first post'} likesCount={3}/>
     </div>
   </div>;
 }
