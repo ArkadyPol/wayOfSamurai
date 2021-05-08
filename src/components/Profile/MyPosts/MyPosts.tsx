@@ -2,11 +2,13 @@ import s from './MyPosts.module.scss';
 import Post from './Post/Post';
 
 function MyPosts() {
-  return <div>
-    My Posts
+  return <div className={s.postsBlock}>
+    <h3>My Posts</h3>
     <div>
-      <textarea/>
-      <button>Add Post</button>
+      <div><textarea/></div>
+      <div>
+        <button>Add Post</button>
+      </div>
     </div>
     <div className={s.posts}>
       <Post message={'It\'s my third post'} likesCount={1}/>
