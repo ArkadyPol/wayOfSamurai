@@ -7,8 +7,15 @@
   padding: 10px;
 }
 
-.dialog.active {
-  color: gold;
+.dialog {
+  a {
+    color: white;
+    text-decoration: none;
+
+    &.active {
+      color: gold;
+    }
+  }
 }
 
 .messages {

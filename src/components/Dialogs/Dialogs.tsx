@@ -1,48 +1,55 @@
 import {NavLink} from 'react-router-dom';
 import s from './Dialogs.module.scss';
+import {v1} from 'uuid';
 
-type DialogItemType = {
+export type DialogItemType = {
+  id: string
   name: string
-  id: number
 }
+
+type MessageType = {
+  id: string
+  message: string
+}
+
+type DialogsPropsType = {
+  data: Array<DialogItemType>
+}
+
+function Dialogs(props: DialogsPropsType) {
+    const messagesData: Array<MessageType> = [
+    {id: v1(), message: 'Hi'},
+    {id: v1(), message: 'How are you?'},
+    {id: v1(), message: 'What are you doing?'},
+  ]
+
+  const dialogsItems = props.data.map(item => <DialogItem key={item.id} name={item.name} id={item.id}/>);
+  const messages = messagesData.map(item => <Message key={item.id} message={item.message} id={item.id}/>);
+
+  return (
+      <div className={s.dialogs}>
+        <div className={s.dialogsItems}>
+          {dialogsItems}
+        </div>
+        <div className={s.messages}>
+          {messages}
+        </div>
+      </div>
+  )
+}
+
 
 function DialogItem(props: DialogItemType) {
   let path = `/dialogs/${props.id}`;
   return (
       <div className={s.dialog}>
-        <NavLink to={path}>{props.name}</NavLink>
+        <NavLink to={path} activeClassName={s.active}>{props.name}</NavLink>
       </div>
   );
 }
 
-type MessageType = {
-  message: string
-}
-
-
 function Message(props: MessageType) {
   return <div className="messages">{props.message}</div>;
-}
-
-function Dialogs() {
-  return (
-      <div className={s.dialogs}>
-        <div className={s.dialogsItems}>
-          <DialogItem name="Dimych" id={1}/>
-          <DialogItem name="Andrey" id={2}/>
-          <DialogItem name="Sveta" id={3}/>
-          <DialogItem name="Sasha" id={4}/>
-          <DialogItem name="Viktor" id={5}/>
-          <DialogItem name="Valera" id={6}/>
-        </div>
-        <div className={s.messages}>
-          <Message message="Hi"/>
-          <Message message="How are you?"/>
-          <Message message="What are you doing?"/>
-        </div>
-      </div>
-  )
-
 }
 
 
