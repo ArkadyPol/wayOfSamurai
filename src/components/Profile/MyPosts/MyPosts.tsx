@@ -15,20 +15,22 @@ function MyPosts() {
     {id: v1(), message: 'It\'s my first post', likesCount: 3},
   ]
 
-  const posts = postsData.map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount}/>);
+  const postsElements = postsData.map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount}/>);
 
-  return <div className={s.postsBlock}>
-    <h3>My Posts</h3>
-    <div>
-      <div><textarea/></div>
-      <div>
-        <button>Add Post</button>
+  return (
+      <div className={s.postsBlock}>
+        <h3>My Posts</h3>
+        <div>
+          <div><textarea/></div>
+          <div>
+            <button>Add Post</button>
+          </div>
+        </div>
+        <div className={s.posts}>
+          {postsElements}
+        </div>
       </div>
-    </div>
-    <div className={s.posts}>
-      {posts}
-    </div>
-  </div>;
+  );
 }
 
 export default MyPosts;

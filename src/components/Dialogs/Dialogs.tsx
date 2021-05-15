@@ -17,22 +17,22 @@ type DialogsPropsType = {
 }
 
 function Dialogs(props: DialogsPropsType) {
-    const messagesData: Array<MessageType> = [
+  const messages: Array<MessageType> = [
     {id: v1(), message: 'Hi'},
     {id: v1(), message: 'How are you?'},
     {id: v1(), message: 'What are you doing?'},
   ]
 
-  const dialogsItems = props.data.map(item => <DialogItem key={item.id} name={item.name} id={item.id}/>);
-  const messages = messagesData.map(item => <Message key={item.id} message={item.message} id={item.id}/>);
+  const dialogsElements = props.data.map(d => <DialogItem key={d.id} name={d.name} id={d.id}/>);
+  const messagesElements = messages.map(m => <Message key={m.id} message={m.message}/>);
 
   return (
       <div className={s.dialogs}>
         <div className={s.dialogsItems}>
-          {dialogsItems}
+          {dialogsElements}
         </div>
         <div className={s.messages}>
-          {messages}
+          {messagesElements}
         </div>
       </div>
   )
@@ -48,8 +48,12 @@ function DialogItem(props: DialogItemType) {
   );
 }
 
-function Message(props: MessageType) {
-  return <div className="messages">{props.message}</div>;
+type MessagePropsType = {
+  message: string
+}
+
+function Message(props: MessagePropsType) {
+  return <div className={s.message}>{props.message}</div>;
 }
 
 
