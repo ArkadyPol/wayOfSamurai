@@ -1,11 +1,6 @@
 import s from './MyPosts.module.scss';
 import Post from './Post/Post';
-
-export type PostType = {
-  id: string
-  message: string
-  likesCount: number
-}
+import {PostType} from '../../../redux/state';
 
 type PropsType = {
   posts: Array<PostType>

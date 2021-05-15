@@ -1,20 +1,15 @@
 import s from './Dialogs.module.scss';
-import DialogItem, {DialogItemType} from './DialogItem/DialogItem';
+import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
-
-export type MessageType = {
-  id: string
-  message: string
-}
+import {DialogsPageType} from '../../redux/state';
 
 type DialogsPropsType = {
-  dialogs: Array<DialogItemType>
-  messages: Array<MessageType>
+  state: DialogsPageType
 }
 
 function Dialogs(props: DialogsPropsType) {
-  const dialogsElements = props.dialogs.map(d => <DialogItem key={d.id} name={d.name} id={d.id}/>);
-  const messagesElements = props.messages.map(m => <Message key={m.id} message={m.message}/>);
+  const dialogsElements = props.state.dialogs.map(d => <DialogItem key={d.id} name={d.name} id={d.id}/>);
+  const messagesElements = props.state.messages.map(m => <Message key={m.id} message={m.message}/>);
 
   return (
       <div className={s.dialogs}>
@@ -27,6 +22,5 @@ function Dialogs(props: DialogsPropsType) {
       </div>
   )
 }
-
 
 export default Dialogs;
