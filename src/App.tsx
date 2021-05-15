@@ -3,14 +3,17 @@ import './App.scss';
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
 import Profile from './components/Profile/Profile';
-import Dialogs, {DialogItemType} from './components/Dialogs/Dialogs';
+import Dialogs, {MessageType} from './components/Dialogs/Dialogs';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import {v1} from 'uuid';
+import {DialogItemType} from './components/Dialogs/DialogItem/DialogItem';
+import {PostType} from './components/Profile/MyPosts/MyPosts';
+
 
 function App() {
-  const dialogsData: Array<DialogItemType> = [
+  const dialogs: Array<DialogItemType> = [
     {id: v1(), name: 'Dimych'},
     {id: v1(), name: 'Andrey'},
     {id: v1(), name: 'Sveta'},
@@ -19,14 +22,26 @@ function App() {
     {id: v1(), name: 'Valera'}
   ]
 
+  const messages: Array<MessageType> = [
+    {id: v1(), message: 'Hi'},
+    {id: v1(), message: 'How are you?'},
+    {id: v1(), message: 'What are you doing?'},
+  ]
+
+  const posts: Array<PostType> = [
+    {id: v1(), message: 'It\'s my third post', likesCount: 1},
+    {id: v1(), message: 'It\'s my second post', likesCount: 2},
+    {id: v1(), message: 'It\'s my first post', likesCount: 3},
+  ]
+
   return (
       <BrowserRouter>
         <div className="app-wrapper">
           <Header/>
           <Navbar/>
           <div className="app-wrapper-content">
-            <Route path="/dialogs" render={() => <Dialogs data={dialogsData}/>}/>
-            <Route path="/profile" component={Profile}/>
+            <Route path="/dialogs" render={() => <Dialogs dialogs={dialogs} messages={messages}/>}/>
+            <Route path="/profile" render={()=> <Profile posts={posts}/>}/>
             <Route path="/news" component={News}/>
             <Route path="/music" component={Music}/>
             <Route path="/settings" component={Settings}/>

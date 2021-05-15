@@ -1,21 +1,18 @@
 import s from './MyPosts.module.scss';
 import Post from './Post/Post';
-import {v1} from 'uuid';
 
-type PostsDataType = {
+export type PostType = {
   id: string
   message: string
   likesCount: number
 }
 
-function MyPosts() {
-  const postsData: Array<PostsDataType> = [
-    {id: v1(), message: 'It\'s my third post', likesCount: 1},
-    {id: v1(), message: 'It\'s my second post', likesCount: 2},
-    {id: v1(), message: 'It\'s my first post', likesCount: 3},
-  ]
+type PropsType = {
+  posts: Array<PostType>
+}
 
-  const postsElements = postsData.map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount}/>);
+function MyPosts(props: PropsType) {
+  const postsElements = props.posts.map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount}/>);
 
   return (
       <div className={s.postsBlock}>
