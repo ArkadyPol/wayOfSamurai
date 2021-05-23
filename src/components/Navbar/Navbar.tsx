@@ -1,26 +1,26 @@
-import {NavLink} from 'react-router-dom';
-import s from './Navbar.module.scss';
+import { NavLink } from 'react-router-dom'
+import s from './Navbar.module.scss'
 
 function Navbar() {
+  const links = ['profile', 'dialogs', 'news', 'music', 'settings']
+  const linksElements = links.map((l, i) => <NavItem key={i} name={l} />)
+
+  return <nav className={s.nav}>{linksElements}</nav>
+}
+
+type NavItemPropsType = {
+  name: string
+}
+
+function NavItem({ name }: NavItemPropsType) {
+  const text = name[0].toUpperCase() + name.slice(1)
   return (
-      <nav className={s.nav}>
-        <div className={s.item}>
-          <NavLink to="/profile" activeClassName={s.active}>Profile</NavLink>
-        </div>
-        <div className={s.item}>
-          <NavLink to="/dialogs" activeClassName={s.active}>Messages</NavLink>
-        </div>
-        <div className={s.item}>
-          <NavLink to="/news" activeClassName={s.active}>News</NavLink>
-        </div>
-        <div className={s.item}>
-          <NavLink to="/music" activeClassName={s.active}>Music</NavLink>
-        </div>
-        <div className={s.item}>
-          <NavLink to="/settings" activeClassName={s.active}>Settings</NavLink>
-        </div>
-      </nav>
+    <div className={s.item}>
+      <NavLink to={`/${name}`} activeClassName={s.active}>
+        {text}
+      </NavLink>
+    </div>
   )
 }
 
-export default Navbar;
+export default Navbar

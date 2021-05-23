@@ -1,13 +1,7 @@
-import s from './News.module.scss';
+//import s from './News.module.scss';
 
 function News() {
-  return (
-      <div>
-        News
-      </div>
-  )
-
+  return <div>News</div>
 }
 
-
-export default News;
+export default News

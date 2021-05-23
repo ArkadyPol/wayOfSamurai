@@ -1,13 +1,7 @@
-import s from './Settings.module.scss';
+//import s from './Settings.module.scss';
 
 function Settings() {
-  return (
-      <div>
-        Settings
-      </div>
-  )
-
+  return <div>Settings</div>
 }
 
-
-export default Settings;
+export default Settings

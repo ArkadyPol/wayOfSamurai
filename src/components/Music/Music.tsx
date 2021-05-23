@@ -1,13 +1,7 @@
-import s from './Music.module.scss';
+//import s from './Music.module.scss';
 
 function Music() {
-  return (
-      <div>
-        Music
-      </div>
-  )
-
+  return <div>Music</div>
 }
 
-
-export default Music;
+export default Music

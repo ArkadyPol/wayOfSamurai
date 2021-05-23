@@ -1,6 +1,6 @@
-import MyPosts from './MyPosts/MyPosts';
-import ProfileInfo from './ProfileInfo/ProfileInfo';
-import {ProfilePageType} from '../../redux/state';
+import MyPosts from './MyPosts/MyPosts'
+import ProfileInfo from './ProfileInfo/ProfileInfo'
+import { ProfilePageType } from '../../redux/state'
 
 type PropsType = {
   state: ProfilePageType
@@ -8,11 +8,11 @@ type PropsType = {
 
 function Profile(props: PropsType) {
   return (
-      <div>
-        <ProfileInfo/>
-        <MyPosts posts={props.state.posts}/>
-      </div>
-  );
+    <div>
+      <ProfileInfo />
+      <MyPosts posts={props.state.posts} />
+    </div>
+  )
 }
 
-export default Profile;
+export default Profile
