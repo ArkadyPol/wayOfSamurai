@@ -1,3 +1,4 @@
+import { useRef } from 'react'
 import s from './MyPosts.module.scss'
 import Post from './Post/Post'
 import { PostType } from '../../../redux/state'
@@ -11,15 +12,22 @@ function MyPosts(props: PropsType) {
     <Post key={p.id} message={p.message} likesCount={p.likesCount} />
   ))
 
+  const newPostElement = useRef<HTMLTextAreaElement>(null)
+
+  const addPost = () => {
+    const text = newPostElement.current?.value
+    alert(text)
+  }
+
   return (
     <div className={s.postsBlock}>
       <h3>My Posts</h3>
       <div>
         <div>
-          <textarea />
+          <textarea ref={newPostElement} />
         </div>
         <div>
-          <button>Add Post</button>
+          <button onClick={addPost}>Add Post</button>
         </div>
       </div>
       <div className={s.posts}>{postsElements}</div>
