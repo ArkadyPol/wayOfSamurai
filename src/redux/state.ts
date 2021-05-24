@@ -25,13 +25,13 @@ export type RootStateType = {
   dialogsPage: DialogsPageType
 }
 
-const state: RootStateType = {
+let state: RootStateType = {
   profilePage: {
     posts: [
-      { id: v1(), message: "It's my third post", likesCount: 1 },
-      { id: v1(), message: "It's my second post", likesCount: 2 },
-      { id: v1(), message: "It's my first post", likesCount: 3 },
-    ],
+      { id: v1(), message: 'It\'s my third post', likesCount: 1 },
+      { id: v1(), message: 'It\'s my second post', likesCount: 2 },
+      { id: v1(), message: 'It\'s my first post', likesCount: 3 }
+    ]
   },
   dialogsPage: {
     dialogs: [
@@ -40,14 +40,25 @@ const state: RootStateType = {
       { id: v1(), name: 'Sveta' },
       { id: v1(), name: 'Sasha' },
       { id: v1(), name: 'Viktor' },
-      { id: v1(), name: 'Valera' },
+      { id: v1(), name: 'Valera' }
     ],
     messages: [
       { id: v1(), message: 'Hi' },
       { id: v1(), message: 'How are you?' },
-      { id: v1(), message: 'What are you doing?' },
-    ],
-  },
+      { id: v1(), message: 'What are you doing?' }
+    ]
+  }
+}
+
+export const addPost = (postMessage: string) => {
+  const newPost: PostType = {
+    id: v1(),
+    message: postMessage,
+    likesCount: 0
+  }
+
+  state.profilePage.posts.push(newPost)
+
 }
 
 export default state
