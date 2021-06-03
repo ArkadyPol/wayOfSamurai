@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/wayOfSamurai/static/css/main.b0de12e6.chunk.css",
+    "main.js": "/wayOfSamurai/static/js/main.d5c65502.chunk.js",
+    "main.js.map": "/wayOfSamurai/static/js/main.d5c65502.chunk.js.map",
+    "runtime-main.js": "/wayOfSamurai/static/js/runtime-main.35464cac.js",
+    "runtime-main.js.map": "/wayOfSamurai/static/js/runtime-main.35464cac.js.map",
+    "static/js/2.88b7ca2f.chunk.js": "/wayOfSamurai/static/js/2.88b7ca2f.chunk.js",
+    "static/js/2.88b7ca2f.chunk.js.map": "/wayOfSamurai/static/js/2.88b7ca2f.chunk.js.map",
+    "index.html": "/wayOfSamurai/index.html",
+    "static/css/main.b0de12e6.chunk.css.map": "/wayOfSamurai/static/css/main.b0de12e6.chunk.css.map",
+    "static/js/2.88b7ca2f.chunk.js.LICENSE.txt": "/wayOfSamurai/static/js/2.88b7ca2f.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.35464cac.js",
+    "static/js/2.88b7ca2f.chunk.js",
+    "static/css/main.b0de12e6.chunk.css",
+    "static/js/main.d5c65502.chunk.js"
+  ]
+}
