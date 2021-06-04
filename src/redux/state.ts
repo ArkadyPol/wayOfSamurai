@@ -1,5 +1,4 @@
 import { v1 } from 'uuid'
-import { rerenderEntireTree } from '../render'
 
 export type PostType = {
   id: string
@@ -25,6 +24,10 @@ export type DialogsPageType = {
 export type RootStateType = {
   profilePage: ProfilePageType
   dialogsPage: DialogsPageType
+}
+
+let rerenderEntireTree = () => {
+  console.log('state changed')
 }
 
 const state: RootStateType = {
@@ -62,11 +65,14 @@ export const addPost = () => {
 
   state.profilePage.posts.push(newPost)
   state.profilePage.newPostText = ''
-  rerenderEntireTree(state, addPost, updateNewPostText)
+  rerenderEntireTree()
 }
 export const updateNewPostText = (newText: string) => {
   state.profilePage.newPostText = newText
-  rerenderEntireTree(state, addPost, updateNewPostText)
+  rerenderEntireTree()
+}
+export const subscribe = (observer: () => void) => {
+  rerenderEntireTree = observer
 }
 
 export default state
