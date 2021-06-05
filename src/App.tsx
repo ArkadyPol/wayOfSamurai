@@ -7,15 +7,15 @@ import Dialogs from './components/Dialogs/Dialogs'
 import News from './components/News/News'
 import Music from './components/Music/Music'
 import Settings from './components/Settings/Settings'
-import { RootStateType } from './redux/state'
+import { StoreType } from './redux/state'
 
 type AppPropsType = {
-  state: RootStateType
-  addPost: () => void
-  updateNewPostText: (newText: string) => void
+  store: StoreType
 }
 
-function App(props: AppPropsType) {
+function App({ store }: AppPropsType) {
+  const state = store.getState()
+
   return (
     <div className='app-wrapper'>
       <Header />
@@ -23,12 +23,15 @@ function App(props: AppPropsType) {
       <div className='app-wrapper-content'>
         <Route
           path='/dialogs'
-          render={() => <Dialogs state={props.state.dialogsPage} />}
+          render={() => <Dialogs state={state.dialogsPage} />}
         />
         <Route
           path='/profile'
-          render={() => <Profile profilePage={props.state.profilePage} addPost={props.addPost}
-                                 updateNewPostText={props.updateNewPostText} />}
+          render={() => <Profile
+            profilePage={state.profilePage}
+            addPost={store.addPost.bind(store)}
+            updateNewPostText={store.updateNewPostText.bind(store)}
+          />}
         />
         <Route path='/news' render={News} />
         <Route path='/music' render={Music} />
