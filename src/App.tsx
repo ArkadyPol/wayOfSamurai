@@ -15,6 +15,7 @@ type AppPropsType = {
 
 function App({ store }: AppPropsType) {
   const state = store.getState()
+  const dispatch = store.dispatch.bind(store)
 
   return (
     <div className='app-wrapper'>
@@ -29,8 +30,7 @@ function App({ store }: AppPropsType) {
           path='/profile'
           render={() => <Profile
             profilePage={state.profilePage}
-            addPost={store.addPost.bind(store)}
-            updateNewPostText={store.updateNewPostText.bind(store)}
+            dispatch={dispatch}
           />}
         />
         <Route path='/news' render={News} />

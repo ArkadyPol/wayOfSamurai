@@ -1,13 +1,12 @@
 import { ChangeEvent } from 'react'
 import s from './MyPosts.module.scss'
 import Post from './Post/Post'
-import { PostType } from '../../../redux/state'
+import { ActionType, PostType } from '../../../redux/state'
 
 type PropsType = {
   posts: Array<PostType>
-  addPost: () => void
   newPostText: string
-  updateNewPostText: (newText: string) => void
+  dispatch: (action: ActionType) => void
 }
 
 function MyPosts(props: PropsType) {
@@ -16,7 +15,11 @@ function MyPosts(props: PropsType) {
   ))
   const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const text = e.currentTarget.value
-    props.updateNewPostText(text)
+    props.dispatch({ type: 'UPDATE_NEW_POST_TEXT', newText: text })
+  }
+
+  const addPost = () => {
+    props.dispatch({ type: 'ADD_POST' })
   }
 
   return (
@@ -27,7 +30,7 @@ function MyPosts(props: PropsType) {
           <textarea value={props.newPostText} onChange={onPostChange} />
         </div>
         <div>
-          <button onClick={props.addPost}>Add Post</button>
+          <button onClick={addPost}>Add Post</button>
         </div>
       </div>
       <div className={s.posts}>{postsElements}</div>
