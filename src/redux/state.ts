@@ -1,48 +1,13 @@
 import { v1 } from 'uuid'
+import profileReducer, { ProfilePageType, ProfileReducerActionType } from './profile-reducer'
+import dialogsReducer, { DialogsPageType, DialogsReducerActionType } from './dialogs-reducer'
 
-export type PostType = {
-  id: string
-  message: string
-  likesCount: number
-}
-export type DialogType = {
-  id: string
-  name: string
-}
-export type MessageType = {
-  id: string
-  message: string
-}
-export type ProfilePageType = {
-  posts: Array<PostType>
-  newPostText: string
-}
-export type DialogsPageType = {
-  dialogs: Array<DialogType>
-  messages: Array<MessageType>
-  newMessageText: string
-}
 export type RootStateType = {
   profilePage: ProfilePageType
   dialogsPage: DialogsPageType
 }
 
-export const addPostAC = () => ({ type: 'ADD_POST' } as const)
-export const updateNewPostTextAC = (newText: string) => ({
-  type: 'UPDATE_NEW_POST_TEXT',
-  newText
-} as const)
-export const sendMessageAC = () => ({ type: 'SEND_MESSAGE' } as const)
-export const updateNewMessageTextAC = (newText: string) => ({
-  type: 'UPDATE_NEW_MESSAGE_TEXT',
-  newText
-} as const)
-
-export type ActionType =
-  ReturnType<typeof addPostAC>
-  | ReturnType<typeof updateNewPostTextAC>
-  | ReturnType<typeof sendMessageAC>
-  | ReturnType<typeof updateNewMessageTextAC>
+export type ActionType = ProfileReducerActionType | DialogsReducerActionType
 
 export type StoreType = {
   _state: RootStateType
@@ -89,34 +54,9 @@ const store: StoreType = {
     this._callSubscriber = observer
   },
   dispatch(action) {
-    switch (action.type) {
-      case 'ADD_POST':
-        const newPost: PostType = {
-          id: v1(),
-          message: this._state.profilePage.newPostText,
-          likesCount: 0
-        }
-        this._state.profilePage.posts.push(newPost)
-        this._state.profilePage.newPostText = ''
-        this._callSubscriber()
-        break
-      case 'UPDATE_NEW_POST_TEXT':
-        this._state.profilePage.newPostText = action.newText
-        this._callSubscriber()
-        break
-      case 'SEND_MESSAGE':
-        const newMessage: MessageType = {
-          id: v1(),
-          message: this._state.dialogsPage.newMessageText
-        }
-        this._state.dialogsPage.messages.push(newMessage)
-        this._state.dialogsPage.newMessageText = ''
-        this._callSubscriber()
-        break
-      case 'UPDATE_NEW_MESSAGE_TEXT':
-        this._state.dialogsPage.newMessageText = action.newText
-        this._callSubscriber()
-    }
+    this._state.profilePage = profileReducer(this._state.profilePage, action as ProfileReducerActionType)
+    this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action as DialogsReducerActionType)
+    this._callSubscriber()
   }
 }
 

@@ -1,6 +1,7 @@
 import MyPosts from './MyPosts/MyPosts'
 import ProfileInfo from './ProfileInfo/ProfileInfo'
-import { ActionType, ProfilePageType } from '../../redux/state'
+import { ActionType } from '../../redux/state'
+import { ProfilePageType } from '../../redux/profile-reducer'
 
 type PropsType = {
   profilePage: ProfilePageType
