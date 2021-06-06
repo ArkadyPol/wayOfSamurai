@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/wayOfSamurai/static/css/main.b0de12e6.chunk.css",
-    "main.js": "/wayOfSamurai/static/js/main.17c2e9c9.chunk.js",
-    "main.js.map": "/wayOfSamurai/static/js/main.17c2e9c9.chunk.js.map",
+    "main.css": "/wayOfSamurai/static/css/main.151f0f52.chunk.css",
+    "main.js": "/wayOfSamurai/static/js/main.a859167a.chunk.js",
+    "main.js.map": "/wayOfSamurai/static/js/main.a859167a.chunk.js.map",
     "runtime-main.js": "/wayOfSamurai/static/js/runtime-main.35464cac.js",
     "runtime-main.js.map": "/wayOfSamurai/static/js/runtime-main.35464cac.js.map",
-    "static/js/2.2bacd927.chunk.js": "/wayOfSamurai/static/js/2.2bacd927.chunk.js",
-    "static/js/2.2bacd927.chunk.js.map": "/wayOfSamurai/static/js/2.2bacd927.chunk.js.map",
+    "static/js/2.729f84ac.chunk.js": "/wayOfSamurai/static/js/2.729f84ac.chunk.js",
+    "static/js/2.729f84ac.chunk.js.map": "/wayOfSamurai/static/js/2.729f84ac.chunk.js.map",
     "index.html": "/wayOfSamurai/index.html",
-    "static/css/main.b0de12e6.chunk.css.map": "/wayOfSamurai/static/css/main.b0de12e6.chunk.css.map",
-    "static/js/2.2bacd927.chunk.js.LICENSE.txt": "/wayOfSamurai/static/js/2.2bacd927.chunk.js.LICENSE.txt"
+    "static/css/main.151f0f52.chunk.css.map": "/wayOfSamurai/static/css/main.151f0f52.chunk.css.map",
+    "static/js/2.729f84ac.chunk.js.LICENSE.txt": "/wayOfSamurai/static/js/2.729f84ac.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.35464cac.js",
-    "static/js/2.2bacd927.chunk.js",
-    "static/css/main.b0de12e6.chunk.css",
-    "static/js/main.17c2e9c9.chunk.js"
+    "static/js/2.729f84ac.chunk.js",
+    "static/css/main.151f0f52.chunk.css",
+    "static/js/main.a859167a.chunk.js"
   ]
 }
