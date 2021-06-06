@@ -20,20 +20,29 @@ export type ProfilePageType = {
 export type DialogsPageType = {
   dialogs: Array<DialogType>
   messages: Array<MessageType>
+  newMessageText: string
 }
 export type RootStateType = {
   profilePage: ProfilePageType
   dialogsPage: DialogsPageType
 }
 
-type AddPostActionType = {
-  type: 'ADD_POST'
-}
-type UpdateNewPostTextActionType = {
-  type: 'UPDATE_NEW_POST_TEXT'
-  newText: string
-}
-export type ActionType = AddPostActionType | UpdateNewPostTextActionType
+export const addPostAC = () => ({ type: 'ADD_POST' } as const)
+export const updateNewPostTextAC = (newText: string) => ({
+  type: 'UPDATE_NEW_POST_TEXT',
+  newText
+} as const)
+export const sendMessageAC = () => ({ type: 'SEND_MESSAGE' } as const)
+export const updateNewMessageTextAC = (newText: string) => ({
+  type: 'UPDATE_NEW_MESSAGE_TEXT',
+  newText
+} as const)
+
+export type ActionType =
+  ReturnType<typeof addPostAC>
+  | ReturnType<typeof updateNewPostTextAC>
+  | ReturnType<typeof sendMessageAC>
+  | ReturnType<typeof updateNewMessageTextAC>
 
 export type StoreType = {
   _state: RootStateType
@@ -66,7 +75,8 @@ const store: StoreType = {
         { id: v1(), message: 'Hi' },
         { id: v1(), message: 'How are you?' },
         { id: v1(), message: 'What are you doing?' }
-      ]
+      ],
+      newMessageText: ''
     }
   },
   _callSubscriber() {
@@ -94,6 +104,18 @@ const store: StoreType = {
         this._state.profilePage.newPostText = action.newText
         this._callSubscriber()
         break
+      case 'SEND_MESSAGE':
+        const newMessage: MessageType = {
+          id: v1(),
+          message: this._state.dialogsPage.newMessageText
+        }
+        this._state.dialogsPage.messages.push(newMessage)
+        this._state.dialogsPage.newMessageText = ''
+        this._callSubscriber()
+        break
+      case 'UPDATE_NEW_MESSAGE_TEXT':
+        this._state.dialogsPage.newMessageText = action.newText
+        this._callSubscriber()
     }
   }
 }

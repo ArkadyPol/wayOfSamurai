@@ -24,14 +24,11 @@ function App({ store }: AppPropsType) {
       <div className='app-wrapper-content'>
         <Route
           path='/dialogs'
-          render={() => <Dialogs state={state.dialogsPage} />}
+          render={() => <Dialogs state={state.dialogsPage} dispatch={dispatch} />}
         />
         <Route
           path='/profile'
-          render={() => <Profile
-            profilePage={state.profilePage}
-            dispatch={dispatch}
-          />}
+          render={() => <Profile profilePage={state.profilePage} dispatch={dispatch} />}
         />
         <Route path='/news' render={News} />
         <Route path='/music' render={Music} />
