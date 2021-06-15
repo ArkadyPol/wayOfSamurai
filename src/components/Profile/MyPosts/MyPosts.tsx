@@ -1,13 +1,14 @@
 import { ChangeEvent } from 'react'
 import s from './MyPosts.module.scss'
 import Post from './Post/Post'
-import { ActionType } from '../../../redux/state'
+import { ActionType } from '../../../redux'
 import { addPostAC, updateNewPostTextAC, PostType } from '../../../redux/profile-reducer'
+import { Dispatch } from 'redux'
 
 type PropsType = {
   posts: Array<PostType>
   newPostText: string
-  dispatch: (action: ActionType) => void
+  dispatch: Dispatch<ActionType>
 }
 
 function MyPosts(props: PropsType) {

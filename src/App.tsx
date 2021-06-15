@@ -7,7 +7,7 @@ import Dialogs from './components/Dialogs/Dialogs'
 import News from './components/News/News'
 import Music from './components/Music/Music'
 import Settings from './components/Settings/Settings'
-import { StoreType } from './redux/state'
+import { StoreType } from './redux'
 
 type AppPropsType = {
   store: StoreType
@@ -15,7 +15,7 @@ type AppPropsType = {
 
 function App({ store }: AppPropsType) {
   const state = store.getState()
-  const dispatch = store.dispatch.bind(store)
+  const dispatch = store.dispatch
 
   return (
     <div className='app-wrapper'>

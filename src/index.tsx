@@ -1,4 +1,4 @@
-import store from './redux/state'
+import store from './redux'
 import './index.scss'
 import ReactDOM from 'react-dom'
 import { HashRouter } from 'react-router-dom'

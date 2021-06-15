@@ -1,11 +1,12 @@
 import MyPosts from './MyPosts/MyPosts'
 import ProfileInfo from './ProfileInfo/ProfileInfo'
-import { ActionType } from '../../redux/state'
+import { ActionType } from '../../redux'
 import { ProfilePageType } from '../../redux/profile-reducer'
+import { Dispatch } from 'redux'
 
 type PropsType = {
   profilePage: ProfilePageType
-  dispatch: (action: ActionType) => void
+  dispatch: Dispatch<ActionType>
 }
 
 function Profile(props: PropsType) {
