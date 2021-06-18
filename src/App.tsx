@@ -3,20 +3,17 @@ import './App.scss'
 import Header from './components/Header/Header'
 import Navbar from './components/Navbar/Navbar'
 import Profile from './components/Profile/Profile'
-import Dialogs from './components/Dialogs/Dialogs'
 import News from './components/News/News'
 import Music from './components/Music/Music'
 import Settings from './components/Settings/Settings'
 import { StoreType } from './redux'
+import DialogsContainer from './components/Dialogs/DialogsContainer'
 
 type AppPropsType = {
   store: StoreType
 }
 
 function App({ store }: AppPropsType) {
-  const state = store.getState()
-  const dispatch = store.dispatch
-
   return (
     <div className='app-wrapper'>
       <Header />
@@ -24,11 +21,11 @@ function App({ store }: AppPropsType) {
       <div className='app-wrapper-content'>
         <Route
           path='/dialogs'
-          render={() => <Dialogs state={state.dialogsPage} dispatch={dispatch} />}
+          render={() => <DialogsContainer store={store} />}
         />
         <Route
           path='/profile'
-          render={() => <Profile profilePage={state.profilePage} dispatch={dispatch} />}
+          render={() => <Profile store={store} />}
         />
         <Route path='/news' render={News} />
         <Route path='/music' render={Music} />
