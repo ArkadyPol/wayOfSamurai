@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import s from './Navbar.module.scss'
 
 function Navbar() {
-  const links = ['profile', 'dialogs', 'news', 'music', 'settings']
+  const links = ['profile', 'dialogs', 'users', 'news', 'music', 'settings']
   const linksElements = links.map((l, i) => <NavItem key={i} name={l} />)
 
   return <nav className={s.nav}>{linksElements}</nav>

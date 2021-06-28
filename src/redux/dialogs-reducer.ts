@@ -8,20 +8,14 @@ export type MessageType = {
   id: string
   message: string
 }
-export type DialogsPageType = {
-  dialogs: Array<DialogType>
-  messages: Array<MessageType>
-  newMessageText: string
-}
-
-export const sendMessageAC = () => ({ type: 'SEND_MESSAGE' } as const)
-export const updateNewMessageTextAC = (newText: string) => ({
+export const sendMessage = () => ({ type: 'SEND_MESSAGE' } as const)
+export const updateNewMessageText = (newText: string) => ({
   type: 'UPDATE_NEW_MESSAGE_TEXT',
   newText
 } as const)
-export type DialogsReducerActionType = ReturnType<typeof sendMessageAC> | ReturnType<typeof updateNewMessageTextAC>
+export type DialogsReducerAT = ReturnType<typeof sendMessage> | ReturnType<typeof updateNewMessageText>
 
-const initialState: DialogsPageType = {
+const initialState = {
   dialogs: [
     { id: v1(), name: 'Dimych' },
     { id: v1(), name: 'Andrey' },
@@ -29,17 +23,18 @@ const initialState: DialogsPageType = {
     { id: v1(), name: 'Sasha' },
     { id: v1(), name: 'Viktor' },
     { id: v1(), name: 'Valera' }
-  ],
+  ] as DialogType[],
   messages: [
     { id: v1(), message: 'Hi' },
     { id: v1(), message: 'How are you?' },
     { id: v1(), message: 'What are you doing?' }
-  ],
+  ] as MessageType[],
   newMessageText: ''
 }
 
+export type DialogsPageType = typeof initialState
 
-const dialogsReducer = (state = initialState, action: DialogsReducerActionType): DialogsPageType => {
+const dialogsReducer = (state: DialogsPageType = initialState, action: DialogsReducerAT): DialogsPageType => {
   switch (action.type) {
     case 'SEND_MESSAGE':
       const newMessage: MessageType = {

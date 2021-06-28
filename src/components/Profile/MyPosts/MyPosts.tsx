@@ -1,16 +1,9 @@
 import { ChangeEvent } from 'react'
 import s from './MyPosts.module.scss'
 import Post from './Post/Post'
-import { PostType } from '../../../redux/profile-reducer'
+import { MyPostPropsType } from './MyPostsContainer'
 
-type PropsType = {
-  posts: Array<PostType>
-  newPostText: string
-  updateNewPostText: (text: string) => void
-  addPost: () => void
-}
-
-function MyPosts(props: PropsType) {
+function MyPosts(props: MyPostPropsType) {
   const postsElements = props.posts.map(p => (
     <Post key={p.id} message={p.message} likesCount={p.likesCount} />
   ))

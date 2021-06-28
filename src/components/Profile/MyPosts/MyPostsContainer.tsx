@@ -1,15 +1,12 @@
-import { addPostAC, updateNewPostTextAC } from '../../../redux/profile-reducer'
+import { addPost, ProfilePageType, updateNewPostText } from '../../../redux/profile-reducer'
 import MyPosts from './MyPosts'
-import { connect } from 'react-redux'
-import { AppDispatch, RootStateType } from '../../../redux'
+import { connect, ConnectedProps } from 'react-redux'
+import { RootStateType } from '../../../redux'
 
-const mapStateToProps = ({ profilePage }: RootStateType) => ({ ...profilePage })
+const mapStateToProps = ({ profilePage }: RootStateType): ProfilePageType => ({ ...profilePage })
 
-const mapDispatchToProps = (dispatch: AppDispatch) => ({
-  updateNewPostText: (text: string) => dispatch(updateNewPostTextAC(text)),
-  addPost: () => dispatch(addPostAC())
-})
+const connector = connect(mapStateToProps, { addPost, updateNewPostText })
 
-const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
+export type MyPostPropsType = ConnectedProps<typeof connector>
 
-export default MyPostsContainer
+export default connector(MyPosts)
