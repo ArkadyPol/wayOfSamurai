@@ -1,17 +1,16 @@
-export type LocationType = {
-  city: string
-  country: string
+export type PhotosType = {
+  small: null | string
+  large: null | string
 }
 export type UserType = {
-  id: string
-  photoUrl: string
-  fullName: string
+  id: number
+  name: string
   status: string
-  location: LocationType
+  photos: PhotosType
   followed: boolean
 }
 
-export const toggleFollow = (userId: string) => ({ type: 'TOGGLE_FOLLOW', userId } as const)
+export const toggleFollow = (userId: number) => ({ type: 'TOGGLE_FOLLOW', userId } as const)
 export const setUsers = (users: UserType[]) => ({ type: 'SET_USERS', users } as const)
 
 export type UsersReducerAT = ReturnType<typeof toggleFollow> | ReturnType<typeof setUsers>
