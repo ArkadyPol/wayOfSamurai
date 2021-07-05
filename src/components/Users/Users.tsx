@@ -1,6 +1,5 @@
 import { UsersPropsType } from './UsersContainer'
 import User from './User/User'
-import { useEffect } from 'react'
 import axios from 'axios'
 import { UserType } from '../../redux/users-reducer'
 import s from './Users.module.scss'
@@ -15,16 +14,20 @@ type ResponseDataType = {
 function Users(props: UsersPropsType) {
   const { setUsers } = props
 
-  useEffect(() => {
+  const getUsers = () => {
     axios.get<ResponseDataType>('https://social-network.samuraijs.com/api/1.0/users?count=12')
       .then(response => {
         setUsers(response.data.items)
       })
-  }, [setUsers])
+  }
+
 
   const users = props.users.map(u => <User key={u.id} user={u} toggleFollow={props.toggleFollow} />)
 
-  return <div className={s.users}>{users}</div>
+  return <>
+    <button onClick={getUsers}>Get Users</button>
+    <div className={s.users}> {users}</div>
+  </>
 }
 
 export default Users
