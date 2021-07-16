@@ -15,13 +15,44 @@ function Users(props: PropsType) {
   const { users, toggleFollow, totalUsersCount, pageSize, onPageChanged, currentPage } = props
 
   const pagesCount = Math.ceil(totalUsersCount / pageSize)
-  const pages = []
 
-  for (let i = 1; i <= pagesCount; i++) {
-    pages.push(i)
+  function getPages(currentPage: number, pagesCount: number) {
+    const pages = [1]
+    if (currentPage < 13) currentPage = 13
+    if (currentPage > pagesCount - 12) currentPage = pagesCount - 12
+    let firstGap = Math.floor((currentPage - 1) / 11)
+    if (firstGap <= 3) {
+      for (let i = 1; i <= 10; i++) {
+        pages.push(1 + firstGap * i)
+      }
+    } else {
+      let firstStep = Math.pow(currentPage - 2, 1 / 11)
+      for (let i = 10; i >= 1; i--) {
+        let page = Math.ceil(currentPage - 1 - Math.pow(firstStep, i))
+        pages.push(page)
+      }
+    }
+    pages.push(currentPage - 1, currentPage, currentPage + 1)
+    let secondGap = Math.floor((pagesCount - currentPage) / 11)
+    if (secondGap <= 3) {
+      for (let i = 10; i >= 1; i--) {
+        pages.push(pagesCount - secondGap * i)
+      }
+    } else {
+      let secondStep = Math.pow(pagesCount - currentPage - 1, 1 / 11)
+      for (let i = 1; i <= 10; i++) {
+        let page = Math.ceil(currentPage + Math.pow(secondStep, i))
+        pages.push(page)
+      }
+    }
+    pages.push(pagesCount)
+    return pages
   }
-  const pagesElements = pages.map(p => (
-    <span key={p}
+
+  const pages = getPages(currentPage, pagesCount)
+
+  const pagesElements = pages.map((p, i) => (
+    <span key={i}
           onClick={() => {
             onPageChanged(p)
           }}
