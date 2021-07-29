@@ -68,6 +68,6 @@ const connector = connect(mapStateToProps, {
   toggleIsFetching
 })
 
-export type UsersPropsType = ConnectedProps<typeof connector>
+type UsersPropsType = ConnectedProps<typeof connector>
 
 export default connector(UserContainer)

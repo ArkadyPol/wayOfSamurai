@@ -1,6 +1,7 @@
 import { UserType } from '../../../redux/users-reducer'
 import s from './User.module.scss'
 import userPhoto from '../../../assets/images/user.jpg'
+import { NavLink } from 'react-router-dom'
 
 type PropsType = {
   user: UserType
@@ -13,7 +14,9 @@ function User(props: PropsType) {
   return (
     <div className={s.user}>
       <div className={s.avatar}>
-        <img src={user.photos.small || userPhoto} alt='avatar' className={s.userPhoto} />
+        <NavLink to={`/profile/${user.id}`}>
+          <img src={user.photos.small || userPhoto} alt='avatar' className={s.userPhoto} />
+        </NavLink>
         <div className={s.toggleBtn}>
           <button onClick={() => props.toggleFollow(user.id)}> {user.followed ? 'Unfollow' : 'Follow'}</button>
         </div>
