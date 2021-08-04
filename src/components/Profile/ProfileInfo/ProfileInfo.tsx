@@ -2,6 +2,7 @@ import s from './ProfileInfo.module.scss'
 import { ProfileType } from '../../../redux/profile-reducer'
 import userPhoto from '../../../assets/images/user.jpg'
 import Preloader from '../../common/Preloader/Preloader'
+import { Fragment } from 'react'
 
 type PropsType = {
   profile: ProfileType | null
@@ -28,10 +29,10 @@ function ProfileInfo(props: PropsType) {
         <div> {profile.lookingForAJobDescription}</div>
         <div>
           {Object.entries(profile.contacts).map(([key, value]) =>
-            <>
-              <a target='_blank' rel='noreferrer' key={key} href={value || '/404'}>{key}</a>
+            <Fragment key={key}>
+              <a target='_blank' rel='noreferrer'  href={value || '/404'}>{key}</a>
               {" "}
-            </>)}
+            </Fragment>)}
         </div>
       </div>
     </>
