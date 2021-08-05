@@ -1,3 +1,5 @@
+@use "../../common";
+
 .nav {
   grid-area: n;
   background-color: #d99d74;
@@ -5,14 +7,6 @@
 }
 
 .item {
-
-  a {
-    color: white;
-    text-decoration: none;
-
-    &.active {
-      color: #f7ff00;
-    }
-  }
+  @include common.nav-link;
 }
 

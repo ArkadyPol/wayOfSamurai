@@ -1,0 +1,14 @@
+@mixin nav-link {
+  a {
+    color: white;
+    text-decoration: none;
+
+    &.active {
+      color: #f1ff21;
+    }
+  }
+
+  a:hover {
+    color: #111be0;
+  }
+}

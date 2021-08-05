@@ -27,7 +27,7 @@ function ProfileInfo(props: PropsType) {
         <div> {profile.aboutMe}</div>
         <div> {profile.lookingForAJob}</div>
         <div> {profile.lookingForAJobDescription}</div>
-        <div>
+        <div className={s.contacts}>
           {Object.entries(profile.contacts).map(([key, value]) =>
             <Fragment key={key}>
               <a target='_blank' rel='noreferrer'  href={value || '/404'}>{key}</a>

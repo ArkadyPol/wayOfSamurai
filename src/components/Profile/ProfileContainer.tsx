@@ -15,7 +15,15 @@ type PropsType = RouteComponentProps<PathParamsType> & ProfilePropsType
 class ProfileContainer extends Component<PropsType> {
   componentDidMount() {
     const { setUserProfile, match } = this.props
-    const userId = match.params.userId || 2
+    let userId: number | string
+    userId = match.params.userId
+    if (!userId) {
+      if (this.props.isAuth && this.props.userId) {
+        userId = this.props.userId
+      } else {
+        userId = 2
+      }
+    }
     axios.get<ProfileType>(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
       .then(response => {
         setUserProfile(response.data)
@@ -27,7 +35,11 @@ class ProfileContainer extends Component<PropsType> {
   }
 }
 
-const mapStateToProps = ({ profilePage: { profile } }: RootStateType): { profile: ProfileType | null } => ({ profile })
+const mapStateToProps = (state: RootStateType): { profile: ProfileType | null; isAuth: boolean; userId: number | null } => ({
+  profile: state.profilePage.profile,
+  isAuth: state.auth.isAuth,
+  userId: state.auth.userId
+})
 
 const connector = connect(mapStateToProps, { setUserProfile })
 

@@ -1,3 +1,5 @@
+@use "../../../common";
+
 .backImage {
   img {
     width: 100%;
@@ -6,4 +8,8 @@
 
 .descriptionBlock {
   padding: 10px;
+}
+
+.contacts {
+  @include common.nav-link;
 }

@@ -1,3 +1,5 @@
+@use '../../common';
+
 .header {
   grid-area: h;
   background-color: #26ad26;
@@ -6,4 +8,9 @@
   img {
     width: 25px;
   }
+}
+
+.loginBlock {
+  @include common.nav-link;
+  float: right;
 }
