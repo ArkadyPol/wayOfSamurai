@@ -11,13 +11,13 @@ const instance = axios.create({
 })
 
 
-type ResponseGetUsersDataType = {
+type GetUsersResponseType = {
   items: UserType[]
   totalCount: number
   error: null | string
 }
 
-type ResponseDataType<T = {}> = {
+type ResponseType<T = {}> = {
   data: T
   fieldsErrors: string[]
   messages: string[]
@@ -26,19 +26,19 @@ type ResponseDataType<T = {}> = {
 
 const api = {
   async getUsers(pageSize = 15, pageNumber = 1) {
-    const { data } = await instance.get<ResponseGetUsersDataType>(`users?count=${pageSize}&page=${pageNumber}`)
+    const { data } = await instance.get<GetUsersResponseType>(`users?count=${pageSize}&page=${pageNumber}`)
     return data
   },
   async followUser(userId: number) {
-    const { data } = await instance.post<ResponseDataType>(`follow/${userId}`)
+    const { data } = await instance.post<ResponseType>(`follow/${userId}`)
     return data
   },
   async unfollowUser(userId: number) {
-    const { data } = await instance.delete<ResponseDataType>(`follow/${userId}`)
+    const { data } = await instance.delete<ResponseType>(`follow/${userId}`)
     return data
   },
   async authMe() {
-    const { data } = await instance.get<ResponseDataType<{ id: number, login: string, email: string }>>(`auth/me`)
+    const { data } = await instance.get<ResponseType<{ id: number, login: string, email: string }>>(`auth/me`)
     return data
   },
   async getProfile(userId: number | string) {

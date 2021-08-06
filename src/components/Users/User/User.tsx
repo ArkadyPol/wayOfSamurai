@@ -6,18 +6,22 @@ import api from '../../../api'
 
 type PropsType = {
   user: UserType
+  followingInProgress: number[]
   toggleFollow: (userId: number) => void
+  toggleFollowingProgress: (isFetching: boolean, userId: number) => void
 }
 
 function User(props: PropsType) {
-  const { user } = props
+  const { user, toggleFollow, toggleFollowingProgress, followingInProgress } = props
 
   const onToggleFollowClick = () => {
+    toggleFollowingProgress(true, user.id)
     const promise = user.followed ? api.unfollowUser(user.id) : api.followUser(user.id)
     promise.then(data => {
       if (data.resultCode === 0) {
-        props.toggleFollow(user.id)
+        toggleFollow(user.id)
       }
+      toggleFollowingProgress(false, user.id)
     })
   }
 
@@ -28,7 +32,8 @@ function User(props: PropsType) {
           <img src={user.photos.small || userPhoto} alt='avatar' className={s.userPhoto} />
         </NavLink>
         <div className={s.toggleBtn}>
-          <button onClick={onToggleFollowClick}> {user.followed ? 'Unfollow' : 'Follow'}</button>
+          <button disabled={followingInProgress.some(id => id === user.id)}
+                  onClick={onToggleFollowClick}> {user.followed ? 'Unfollow' : 'Follow'}</button>
         </div>
       </div>
       <div className={s.userInfo}>

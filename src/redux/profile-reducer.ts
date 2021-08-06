@@ -34,10 +34,10 @@ export const updateNewPostText = (newText: string) => ({
   newText
 } as const)
 export const setUserProfile = (profile: ProfileType) => ({ type: 'SET_USER_PROFILE', profile } as const)
-export type ProfileReducerAT =
-  ReturnType<typeof addPost>
-  | ReturnType<typeof updateNewPostText>
-  | ReturnType<typeof setUserProfile>
+
+const actions = [addPost, updateNewPostText, setUserProfile]
+
+export type ProfileReducerAT = ReturnType<typeof actions[number]>
 
 const initialState = {
   posts: [

@@ -6,7 +6,7 @@ import {
   setUsers,
   UsersPageType,
   setCurrentPage,
-  setTotalUsersCount
+  setTotalUsersCount, toggleFollowingProgress
 } from '../../redux/users-reducer'
 import { Component } from 'react'
 import Users from './Users'
@@ -36,17 +36,14 @@ class UserContainer extends Component<UsersPropsType> {
   }
 
   render() {
-    const { totalUsersCount, pageSize, users, toggleFollow, currentPage } = this.props
 
     return (
       <>
         {this.props.isFetching && <Preloader />}
-        <Users users={users} toggleFollow={toggleFollow} totalUsersCount={totalUsersCount}
-               pageSize={pageSize} currentPage={currentPage} onPageChanged={this.onPageChanged} />
+        <Users {...this.props} onPageChanged={this.onPageChanged} />
       </>
     )
   }
-
 }
 
 const mapStateToProps = ({ usersPage }: RootStateType): UsersPageType => ({ ...usersPage })
@@ -56,7 +53,8 @@ const connector = connect(mapStateToProps, {
   setUsers,
   setCurrentPage,
   setTotalUsersCount,
-  toggleIsFetching
+  toggleIsFetching,
+  toggleFollowingProgress
 })
 
 type UsersPropsType = ConnectedProps<typeof connector>

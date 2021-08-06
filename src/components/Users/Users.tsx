@@ -4,15 +4,26 @@ import User from './User/User'
 
 type PropsType = {
   users: UserType[]
-  toggleFollow: (userId: number) => void
   totalUsersCount: number
   pageSize: number
   currentPage: number
+  followingInProgress: number[]
+  toggleFollow: (userId: number) => void
+  toggleFollowingProgress: (isFetching: boolean, userId: number) => void
   onPageChanged: (pageNumber: number) => void
 }
 
 function Users(props: PropsType) {
-  const { users, toggleFollow, totalUsersCount, pageSize, onPageChanged, currentPage } = props
+  const {
+    users,
+    toggleFollow,
+    totalUsersCount,
+    pageSize,
+    onPageChanged,
+    currentPage,
+    toggleFollowingProgress,
+    followingInProgress
+  } = props
 
   const pagesCount = Math.ceil(totalUsersCount / pageSize)
 
@@ -59,7 +70,9 @@ function Users(props: PropsType) {
           className={`${s.page} ${(p === currentPage) && s.selectedPage}`}>{p}
       </span>
   ))
-  const usersElements = users.map(u => <User key={u.id} user={u} toggleFollow={toggleFollow} />)
+  const usersElements = users.map(u =>
+    <User key={u.id} user={u} toggleFollow={toggleFollow}
+          toggleFollowingProgress={toggleFollowingProgress} followingInProgress={followingInProgress} />)
   return (
     <>
       <div> {pagesElements} </div>
