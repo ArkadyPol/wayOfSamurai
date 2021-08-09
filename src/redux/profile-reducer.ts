@@ -76,7 +76,7 @@ export default profileReducer
 
 type ThunkType = ThunkAction<void, RootStateType, unknown, ProfileReducerAT>
 
-export const setProfile = (userId: string | number): ThunkType => async dispatch => {
+export const getUserProfile = (userId: string | number): ThunkType => async dispatch => {
   const data = await api.getProfile(userId)
   dispatch(setUserProfile(data))
 }

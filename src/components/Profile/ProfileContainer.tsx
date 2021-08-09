@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import Profile from './Profile'
 import { connect, ConnectedProps } from 'react-redux'
-import { ProfileType, setProfile } from '../../redux/profile-reducer'
+import { ProfileType, getUserProfile } from '../../redux/profile-reducer'
 import { RootStateType } from '../../redux'
 import { RouteComponentProps, withRouter } from 'react-router-dom'
 
@@ -13,13 +13,14 @@ type PropsType = RouteComponentProps<PathParamsType> & ProfilePropsType
 
 class ProfileContainer extends Component<PropsType> {
   componentDidMount() {
-    const { setProfile, match } = this.props
-    const userId = match.params.userId
+    const { getUserProfile, match } = this.props
+    const {userId} = match.params
     if (userId) {
-      setProfile(userId)
+      getUserProfile(userId)
     } else {
-      if (this.props.isAuth && this.props.userId) {
-        setProfile(this.props.userId)
+      const {isAuth, userId} = this.props
+      if (isAuth && userId) {
+        getUserProfile(userId)
       }
     }
   }
@@ -35,7 +36,7 @@ const mapStateToProps = (state: RootStateType): { profile: ProfileType | null; i
   userId: state.auth.userId
 })
 
-const connector = connect(mapStateToProps, { setProfile })
+const connector = connect(mapStateToProps, { getUserProfile })
 
 type ProfilePropsType = ConnectedProps<typeof connector>
 
