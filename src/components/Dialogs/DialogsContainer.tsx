@@ -5,9 +5,13 @@ import { RootStateType } from '../../redux'
 
 type MapStatePropsType = {
   dialogsPage: DialogsPageType
+  isAuth: boolean
 }
 
-const mapStateToProps = ({ dialogsPage }: RootStateType): MapStatePropsType => ({ dialogsPage })
+const mapStateToProps = (state: RootStateType): MapStatePropsType => ({
+  dialogsPage: state.dialogsPage,
+  isAuth: state.auth.isAuth
+})
 
 const connector = connect(mapStateToProps, { sendMessage, updateNewMessageText })
 
