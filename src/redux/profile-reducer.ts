@@ -1,5 +1,8 @@
 import { v1 } from 'uuid'
 import { PhotosType } from './users-reducer'
+import { ThunkAction } from 'redux-thunk'
+import { RootStateType } from './index'
+import api from '../api'
 
 export type PostType = {
   id: string
@@ -70,3 +73,10 @@ const profileReducer = (state: ProfilePageType = initialState, action: ProfileRe
 }
 
 export default profileReducer
+
+type ThunkType = ThunkAction<void, RootStateType, unknown, ProfileReducerAT>
+
+export const setProfile = (userId: string | number): ThunkType => async dispatch => {
+  const data = await api.getProfile(userId)
+  dispatch(setUserProfile(data))
+}

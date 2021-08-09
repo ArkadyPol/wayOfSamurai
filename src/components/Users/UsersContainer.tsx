@@ -1,38 +1,26 @@
 import { RootStateType } from '../../redux'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  toggleFollow,
-  toggleIsFetching,
-  setUsers,
   UsersPageType,
+  toggleFollow,
   setCurrentPage,
-  setTotalUsersCount, toggleFollowingProgress
+  getUsers
 } from '../../redux/users-reducer'
 import { Component } from 'react'
 import Users from './Users'
 import Preloader from '../common/Preloader/Preloader'
-import api from '../../api'
 
 class UserContainer extends Component<UsersPropsType> {
 
   componentDidMount() {
-    const { setUsers, currentPage, pageSize, setTotalUsersCount, toggleIsFetching } = this.props
-    toggleIsFetching(true)
-    api.getUsers(pageSize, currentPage).then(data => {
-      setUsers(data.items)
-      setTotalUsersCount(data.totalCount)
-      toggleIsFetching(false)
-    })
+    const { getUsers, currentPage, pageSize } = this.props
+    getUsers(pageSize, currentPage)
   }
 
   onPageChanged = (pageNumber: number) => {
-    const { setCurrentPage, setUsers, pageSize, toggleIsFetching } = this.props
-    toggleIsFetching(true)
+    const { setCurrentPage, getUsers, pageSize } = this.props
     setCurrentPage(pageNumber)
-    api.getUsers(pageSize, pageNumber).then(data => {
-      setUsers(data.items)
-      toggleIsFetching(false)
-    })
+    getUsers(pageSize, pageNumber)
   }
 
   render() {
@@ -48,14 +36,7 @@ class UserContainer extends Component<UsersPropsType> {
 
 const mapStateToProps = ({ usersPage }: RootStateType): UsersPageType => ({ ...usersPage })
 
-const connector = connect(mapStateToProps, {
-  toggleFollow,
-  setUsers,
-  setCurrentPage,
-  setTotalUsersCount,
-  toggleIsFetching,
-  toggleFollowingProgress
-})
+const connector = connect(mapStateToProps, { setCurrentPage, getUsers, toggleFollow })
 
 type UsersPropsType = ConnectedProps<typeof connector>
 

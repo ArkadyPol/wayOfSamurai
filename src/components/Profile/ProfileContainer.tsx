@@ -1,10 +1,9 @@
 import { Component } from 'react'
 import Profile from './Profile'
 import { connect, ConnectedProps } from 'react-redux'
-import { ProfileType, setUserProfile } from '../../redux/profile-reducer'
+import { ProfileType, setProfile } from '../../redux/profile-reducer'
 import { RootStateType } from '../../redux'
 import { RouteComponentProps, withRouter } from 'react-router-dom'
-import api from '../../api'
 
 type PathParamsType = {
   userId: string
@@ -14,17 +13,15 @@ type PropsType = RouteComponentProps<PathParamsType> & ProfilePropsType
 
 class ProfileContainer extends Component<PropsType> {
   componentDidMount() {
-    const { setUserProfile, match } = this.props
-    let userId: number | string
-    userId = match.params.userId
-    if (!userId) {
+    const { setProfile, match } = this.props
+    const userId = match.params.userId
+    if (userId) {
+      setProfile(userId)
+    } else {
       if (this.props.isAuth && this.props.userId) {
-        userId = this.props.userId
-      } else {
-        userId = 2
+        setProfile(this.props.userId)
       }
     }
-    api.getProfile(userId).then(data => setUserProfile(data))
   }
 
   render() {
@@ -38,7 +35,7 @@ const mapStateToProps = (state: RootStateType): { profile: ProfileType | null; i
   userId: state.auth.userId
 })
 
-const connector = connect(mapStateToProps, { setUserProfile })
+const connector = connect(mapStateToProps, { setProfile })
 
 type ProfilePropsType = ConnectedProps<typeof connector>
 

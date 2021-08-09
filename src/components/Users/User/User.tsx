@@ -2,27 +2,18 @@ import { UserType } from '../../../redux/users-reducer'
 import s from './User.module.scss'
 import userPhoto from '../../../assets/images/user.jpg'
 import { NavLink } from 'react-router-dom'
-import api from '../../../api'
 
 type PropsType = {
   user: UserType
   followingInProgress: number[]
-  toggleFollow: (userId: number) => void
-  toggleFollowingProgress: (isFetching: boolean, userId: number) => void
+  toggleFollow: (userId: number, followed: boolean) => void
 }
 
 function User(props: PropsType) {
-  const { user, toggleFollow, toggleFollowingProgress, followingInProgress } = props
+  const { user, followingInProgress, toggleFollow } = props
 
   const onToggleFollowClick = () => {
-    toggleFollowingProgress(true, user.id)
-    const promise = user.followed ? api.unfollowUser(user.id) : api.followUser(user.id)
-    promise.then(data => {
-      if (data.resultCode === 0) {
-        toggleFollow(user.id)
-      }
-      toggleFollowingProgress(false, user.id)
-    })
+    toggleFollow(user.id, user.followed)
   }
 
   return (

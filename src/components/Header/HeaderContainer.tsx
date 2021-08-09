@@ -1,19 +1,12 @@
 import { Component } from 'react'
 import Header from './Header'
 import { connect, ConnectedProps } from 'react-redux'
-import { setAuthUserData } from '../../redux/auth-reducer'
+import { setAuth } from '../../redux/auth-reducer'
 import { RootStateType } from '../../redux'
-import api from '../../api'
 
 class HeaderContainer extends Component<AuthPropsType> {
   componentDidMount() {
-    const { setAuthUserData } = this.props
-    api.authMe().then(({ data, resultCode }) => {
-      const { id, email, login } = data
-      if (resultCode === 0) {
-        setAuthUserData(id, email, login)
-      }
-    })
+    this.props.setAuth()
   }
 
   render() {
@@ -27,7 +20,7 @@ const mapStateToProps = ({ auth }: RootStateType): { isAuth: boolean; login: str
   login: auth.login
 })
 
-const connector = connect(mapStateToProps, { setAuthUserData })
+const connector = connect(mapStateToProps, { setAuth })
 
 type AuthPropsType = ConnectedProps<typeof connector>
 
