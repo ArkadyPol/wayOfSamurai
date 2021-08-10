@@ -2,19 +2,18 @@ import { DialogsPageType, sendMessage, updateNewMessageText } from '../../redux/
 import Dialogs from './Dialogs'
 import { connect, ConnectedProps } from 'react-redux'
 import { RootStateType } from '../../redux'
+import { withAuthRedirect } from '../../hoc/withAuthRedirect'
 
 type MapStatePropsType = {
   dialogsPage: DialogsPageType
-  isAuth: boolean
 }
 
-const mapStateToProps = (state: RootStateType): MapStatePropsType => ({
-  dialogsPage: state.dialogsPage,
-  isAuth: state.auth.isAuth
-})
+const mapStateToProps = ({ dialogsPage }: RootStateType): MapStatePropsType => ({ dialogsPage })
 
 const connector = connect(mapStateToProps, { sendMessage, updateNewMessageText })
 
 export type DialogsPropsType = ConnectedProps<typeof connector>
 
-export default connector(Dialogs)
+const AuthRedirectComponent = withAuthRedirect(Dialogs)
+
+export default connector(AuthRedirectComponent)
