@@ -3,6 +3,8 @@ import Dialogs from './Dialogs'
 import { connect, ConnectedProps } from 'react-redux'
 import { RootStateType } from '../../redux'
 import { withAuthRedirect } from '../../hoc/withAuthRedirect'
+import { compose } from 'redux'
+import { ComponentType } from 'react'
 
 type MapStatePropsType = {
   dialogsPage: DialogsPageType
@@ -14,6 +16,4 @@ const connector = connect(mapStateToProps, { sendMessage, updateNewMessageText }
 
 export type DialogsPropsType = ConnectedProps<typeof connector>
 
-const AuthRedirectComponent = withAuthRedirect(Dialogs)
-
-export default connector(AuthRedirectComponent)
+export default compose<ComponentType>(connector, withAuthRedirect)(Dialogs)

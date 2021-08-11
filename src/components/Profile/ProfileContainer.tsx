@@ -1,10 +1,11 @@
-import { Component } from 'react'
+import { Component, ComponentType } from 'react'
 import Profile from './Profile'
 import { connect, ConnectedProps } from 'react-redux'
 import { ProfileType, getUserProfile } from '../../redux/profile-reducer'
 import { RootStateType } from '../../redux'
 import { RouteComponentProps, withRouter } from 'react-router-dom'
 import { withAuthRedirect } from '../../hoc/withAuthRedirect'
+import { compose } from 'redux'
 
 type PathParamsType = {
   userId: string
@@ -45,8 +46,4 @@ const connector = connect(mapStateToProps, { getUserProfile })
 
 type ProfilePropsType = ConnectedProps<typeof connector>
 
-const AuthRedirectComponent = withAuthRedirect(ProfileContainer)
-
-const WithUrlDataContainerComponent = withRouter(AuthRedirectComponent)
-
-export default connector(WithUrlDataContainerComponent)
+export default compose<ComponentType>(connector, withRouter, withAuthRedirect)(ProfileContainer)
