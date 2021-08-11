@@ -1,21 +1,21 @@
 {
   "files": {
     "main.css": "/wayOfSamurai/static/css/main.dd811e5a.chunk.css",
-    "main.js": "/wayOfSamurai/static/js/main.9955fee5.chunk.js",
-    "main.js.map": "/wayOfSamurai/static/js/main.9955fee5.chunk.js.map",
+    "main.js": "/wayOfSamurai/static/js/main.1dd1b1ac.chunk.js",
+    "main.js.map": "/wayOfSamurai/static/js/main.1dd1b1ac.chunk.js.map",
     "runtime-main.js": "/wayOfSamurai/static/js/runtime-main.35464cac.js",
     "runtime-main.js.map": "/wayOfSamurai/static/js/runtime-main.35464cac.js.map",
-    "static/js/2.c1459097.chunk.js": "/wayOfSamurai/static/js/2.c1459097.chunk.js",
-    "static/js/2.c1459097.chunk.js.map": "/wayOfSamurai/static/js/2.c1459097.chunk.js.map",
+    "static/js/2.5185b21f.chunk.js": "/wayOfSamurai/static/js/2.5185b21f.chunk.js",
+    "static/js/2.5185b21f.chunk.js.map": "/wayOfSamurai/static/js/2.5185b21f.chunk.js.map",
     "index.html": "/wayOfSamurai/index.html",
     "static/css/main.dd811e5a.chunk.css.map": "/wayOfSamurai/static/css/main.dd811e5a.chunk.css.map",
-    "static/js/2.c1459097.chunk.js.LICENSE.txt": "/wayOfSamurai/static/js/2.c1459097.chunk.js.LICENSE.txt",
+    "static/js/2.5185b21f.chunk.js.LICENSE.txt": "/wayOfSamurai/static/js/2.5185b21f.chunk.js.LICENSE.txt",
     "static/media/preloader.d05d646d.svg": "/wayOfSamurai/static/media/preloader.d05d646d.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.35464cac.js",
-    "static/js/2.c1459097.chunk.js",
+    "static/js/2.5185b21f.chunk.js",
     "static/css/main.dd811e5a.chunk.css",
-    "static/js/main.9955fee5.chunk.js"
+    "static/js/main.1dd1b1ac.chunk.js"
   ]
 }
